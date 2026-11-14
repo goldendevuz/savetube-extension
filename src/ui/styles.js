@@ -70,6 +70,7 @@ export const STYLES = `
 @media (prefers-color-scheme: light) {
   .savetube-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
   .savetube-btn:hover { background: rgba(0,0,0,0.1); }
-  .savetube-btn--primary { color: #fff; }
+  .savetube-btn--primary { background: #10b981; border-color: transparent; color: #fff; }
+  .savetube-btn--primary:hover { background: #0d946a; }
 }
 `;

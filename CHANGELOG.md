@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.3]
+
+### Fixed
+
+- The "Watch in SaveTube" button is readable on YouTube's light theme (it had white text on a pale background).
+- The thumbnail overlay sits on the thumbnail's corner in list views, and stays open when YouTube's own hover preview starts.
+- The settings page and popup use the SaveTube green instead of the old red.
+
 ## [1.0.2]
 
 ### Changed
