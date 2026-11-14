@@ -1,5 +1,5 @@
 // Minimal SVG-path rasteriser: enough to fill the M/L/H/V/C/Z paths used by the
-// Flow logo. Paths are flattened to polygons and filled with supersampled AA.
+// SaveTube logo. Paths are flattened to polygons and filled with supersampled AA.
 
 const BEZIER_STEPS = 24;
 

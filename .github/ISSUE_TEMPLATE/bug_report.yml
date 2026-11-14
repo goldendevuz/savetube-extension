@@ -11,7 +11,7 @@ body:
     attributes:
       label: What happened
       description: A clear description of the bug and what you expected instead.
-      placeholder: Clicking "Watch in Flow" on a search result does nothing…
+      placeholder: Clicking "Watch in SaveTube" on a search result does nothing…
     validations:
       required: true
 
@@ -62,9 +62,9 @@ body:
       required: true
 
   - type: dropdown
-    id: flow-state
+    id: savetube-state
     attributes:
-      label: Flow desktop state
+      label: SaveTube desktop state
       options:
         - Installed and running
         - Installed but not running

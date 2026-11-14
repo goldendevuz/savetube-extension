@@ -1,16 +1,16 @@
 {
-  "name": "flow-extension",
+  "name": "savetube-extension",
   "version": "1.0.1",
   "private": true,
   "type": "module",
-  "description": "Send any YouTube video to the Flow desktop app to watch or download.",
-  "homepage": "https://github.com/FlowNeuro/Flow-Extension",
-  "bugs": "https://github.com/FlowNeuro/Flow-Extension/issues",
+  "description": "Send any YouTube video to the SaveTube desktop app to watch or download.",
+  "homepage": "https://github.com/goldendevuz/savetube-extension",
+  "bugs": "https://github.com/goldendevuz/savetube-extension/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlowNeuro/Flow-Extension.git"
+    "url": "git+https://github.com/goldendevuz/savetube-extension.git"
   },
-  "author": "FlowNeuro <flow.aedev@gmail.com>",
+  "author": "SaveTube",
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "node build.mjs",

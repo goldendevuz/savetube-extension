@@ -1,8 +1,8 @@
 // `version` is injected at build time from package.json (single source of truth).
 export const base = {
   manifest_version: 3,
-  name: "Flow — Watch & Download on YouTube",
-  description: "Send any YouTube video to the Flow desktop app to watch or download.",
+  name: "SaveTube — Watch & Download on YouTube",
+  description: "Send any YouTube video to the SaveTube desktop app to watch or download.",
   icons: {
     16: "icons/16.png",
     48: "icons/48.png",

@@ -1,5 +1,5 @@
 export const MSG = {
-  HANDOFF: "flow-handoff",
+  HANDOFF: "savetube-handoff",
 };
 
 export const ACTION = {

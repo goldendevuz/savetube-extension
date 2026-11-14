@@ -37,6 +37,6 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: flow-extension-builds
+          name: savetube-extension-builds
           path: release/*.zip
           if-no-files-found: error

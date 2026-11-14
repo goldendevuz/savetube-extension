@@ -5,24 +5,24 @@ let container;
 function ensureContainer() {
   if (container?.isConnected) return container;
   container = document.createElement("div");
-  container.className = "flow-toasts";
+  container.className = "savetube-toasts";
   floatingRoot().appendChild(container);
   return container;
 }
 
 export function toast({ message, variant = "info", cta, duration = 4000 }) {
   const el = document.createElement("div");
-  el.className = `flow-toast flow-toast--${variant}`;
+  el.className = `savetube-toast savetube-toast--${variant}`;
 
   const msg = document.createElement("span");
-  msg.className = "flow-toast__msg";
+  msg.className = "savetube-toast__msg";
   msg.textContent = message;
   el.appendChild(msg);
 
   if (cta) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "flow-toast__cta";
+    btn.className = "savetube-toast__cta";
     btn.textContent = cta.label;
     btn.addEventListener("click", () => window.open(cta.href, "_blank", "noopener"));
     el.appendChild(btn);

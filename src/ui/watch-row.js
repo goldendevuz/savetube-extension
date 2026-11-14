@@ -3,7 +3,7 @@ import { createInlineHost } from "./shadow-host.js";
 import { createButton } from "./button.js";
 import { playIcon, downloadIcon } from "./icons.js";
 
-const HOST_ID = "flow-ext-watch-row";
+const HOST_ID = "savetube-ext-watch-row";
 const HOST_CSS = "all: initial; display: block; width: 100%;";
 
 function place(host) {
@@ -27,11 +27,11 @@ export function injectWatchRow({ onWatch, onDownload }) {
 
   const { host, root } = createInlineHost(HOST_ID, HOST_CSS);
   const row = document.createElement("div");
-  row.className = "flow-watchbar";
+  row.className = "savetube-watchbar";
   row.append(
     createButton({
       icon: playIcon,
-      label: "Watch in Flow",
+      label: "Watch in SaveTube",
       variant: "primary",
       onClick: onWatch,
     }),

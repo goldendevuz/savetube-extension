@@ -1,5 +1,5 @@
 const DEV = typeof __DEV__ !== "undefined" ? __DEV__ : false;
-const PREFIX = "[Flow]";
+const PREFIX = "[SaveTube]";
 
 export function log(...args) {
   if (DEV) console.debug(PREFIX, ...args);

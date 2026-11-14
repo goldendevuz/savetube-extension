@@ -4,12 +4,12 @@ export async function pingPort(port) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), PING_TIMEOUT_MS);
   try {
-    const res = await fetch(`http://127.0.0.1:${port}/flow/ping`, {
+    const res = await fetch(`http://127.0.0.1:${port}/savetube/ping`, {
       signal: controller.signal,
     });
     if (!res.ok) return null;
     const data = await res.json().catch(() => ({}));
-    if (data && data.app && data.app !== "flow") return null;
+    if (data && data.app && data.app !== "savetube") return null;
     return { port, version: data?.version ?? null };
   } catch {
     return null;
