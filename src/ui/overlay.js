@@ -37,13 +37,20 @@ function ensureOverlay() {
   return overlayEl;
 }
 
+const THUMBNAIL_SELECTOR =
+  "ytd-thumbnail, yt-thumbnail-view-model, a#thumbnail, ytmusic-thumbnail-renderer";
+
 function show(card, id) {
   cancelHide();
   activeCard = card;
   activeId = id;
   const el = ensureOverlay();
   el.classList.add("is-visible");
-  const rect = card.getBoundingClientRect();
+  // The overlay sits on the thumbnail's top-right corner; a list row is wider than its thumbnail, so the
+  // whole card would put it at the far edge of the row.
+  const thumbnail = card.querySelector(THUMBNAIL_SELECTOR);
+  let rect = thumbnail?.getBoundingClientRect();
+  if (!rect || rect.width < 40 || rect.height < 20) rect = card.getBoundingClientRect();
   el.style.top = `${Math.round(rect.top + 8)}px`;
   el.style.left = `${Math.round(rect.right - el.offsetWidth - 8)}px`;
 }
@@ -80,6 +87,11 @@ function onMouseOver(e) {
 
   const card = target.closest(CARD_SELECTOR);
   if (!card) {
+    // YouTube's own hover preview opens in its own element, outside the card; the cursor is still on the card.
+    if (activeCard && target.closest("ytd-video-preview")) {
+      cancelHide();
+      return;
+    }
     scheduleHide();
     return;
   }
