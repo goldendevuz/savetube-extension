@@ -10,7 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/goldendevuz/savetube-extension.git"
   },
-  "author": "SaveTube",
+  "author": "FlowNeuro <flow.aedev@gmail.com> (original author)",
+  "contributors": ["SaveTube (fork)"],
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "node build.mjs",
