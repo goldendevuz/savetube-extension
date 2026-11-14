@@ -2,7 +2,7 @@ node_modules/
 dist/
 release/
 icons/*.png
-icons/flow-mark.svg
+icons/savetube-mark.svg
 *.zip
 .DS_Store
 notes/

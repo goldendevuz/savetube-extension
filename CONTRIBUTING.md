@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve the Flow extension.
+Thanks for helping improve the SaveTube extension.
 
 ## Setup
 
@@ -21,7 +21,7 @@ Reload the extension and refresh YouTube after each rebuild.
 Code is intentionally split into small, single-purpose modules — see the layout in the [README](README.md). Keep it that way:
 
 - One responsibility per file; no monolithic files.
-- All injected UI stays in the Shadow DOM. Never import YouTube or Flow CSS.
+- All injected UI stays in the Shadow DOM. Never import YouTube or SaveTube CSS.
 - The extension only ever transmits a video id (plus optional `t` / `list`). Don't add data collection.
 - No new host permissions or remote code without a clear reason.
 

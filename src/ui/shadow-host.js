@@ -1,6 +1,6 @@
 import { STYLES } from "./styles.js";
 
-export const FLOATING_HOST_ID = "flow-ext-floating";
+export const FLOATING_HOST_ID = "savetube-ext-floating";
 
 function styleElement() {
   const style = document.createElement("style");

@@ -3,16 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flow — Settings</title>
+    <title>SaveTube — Settings</title>
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
     <main class="card">
       <header class="head">
-        <img class="mark" src="../icons/flow-mark.svg" alt="" width="28" height="28" />
+        <img
+          class="mark"
+          src="../icons/savetube-mark.svg"
+          alt=""
+          width="28"
+          height="28"
+        />
         <div>
-          <h1>Flow for YouTube</h1>
-          <p class="sub">Send videos to the Flow desktop app to watch or download.</p>
+          <h1>SaveTube for YouTube</h1>
+          <p class="sub">Send videos to the SaveTube desktop app to watch or download.</p>
         </div>
       </header>
 
@@ -39,7 +45,7 @@
         <label class="row">
           <span class="row__label">
             Include timestamp
-            <small>Continue where you paused on “Watch in Flow”</small>
+            <small>Continue where you paused on “Watch in SaveTube”</small>
           </span>
           <input type="checkbox" data-setting="includeTimestamp" />
         </label>
@@ -47,7 +53,7 @@
           <span class="row__label">
             Route YouTube Music as music
             <small
-              >Play and download music.youtube.com links in Flow’s music player</small
+              >Play and download music.youtube.com links in SaveTube’s music player</small
             >
           </span>
           <input type="checkbox" data-setting="musicAsMusic" />
@@ -59,7 +65,9 @@
         <label class="row">
           <span class="row__label">
             Silent mode
-            <small>Use the local bridge so Flow reacts without an “Open?” prompt</small>
+            <small
+              >Use the local bridge so SaveTube reacts without an “Open?” prompt</small
+            >
           </span>
           <input type="checkbox" data-setting="silentMode" />
         </label>
@@ -73,7 +81,7 @@
         <div class="row">
           <span class="row__label">
             Bridge ports
-            <small>Advanced — must match Flow Desktop</small>
+            <small>Advanced — must match SaveTube Desktop</small>
           </span>
           <input
             id="ports"
@@ -87,7 +95,9 @@
 
       <footer class="foot">
         <a id="repo" href="#" target="_blank" rel="noopener">Extension repo</a>
-        <a id="get-flow" href="#" target="_blank" rel="noopener">Get Flow desktop</a>
+        <a id="get-savetube" href="#" target="_blank" rel="noopener"
+          >Get SaveTube desktop</a
+        >
         <span id="version" class="version"></span>
       </footer>
     </main>

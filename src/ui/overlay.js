@@ -18,18 +18,18 @@ function ensureOverlay() {
   if (overlayEl?.isConnected) return overlayEl;
 
   overlayEl = document.createElement("div");
-  overlayEl.className = "flow-overlay";
+  overlayEl.className = "savetube-overlay";
   overlayEl.append(
     createButton({
       icon: playIcon,
       variant: "icon",
-      title: "Watch in Flow",
+      title: "Watch in SaveTube",
       onClick: () => activeId && handlers?.onWatch(activeId),
     }),
     createButton({
       icon: downloadIcon,
       variant: "icon",
-      title: "Download with Flow",
+      title: "Download with SaveTube",
       onClick: () => activeId && handlers?.onDownload(activeId),
     }),
   );

@@ -26,8 +26,8 @@ const MENU_GROUPS = [
 ];
 
 const ITEMS = [
-  { action: "watch", title: "Watch in Flow" },
-  { action: "download", title: "Download with Flow" },
+  { action: "watch", title: "Watch in SaveTube" },
+  { action: "download", title: "Download with SaveTube" },
 ];
 
 export function menuAction(menuItemId) {
@@ -39,7 +39,7 @@ export function createMenus() {
     for (const group of MENU_GROUPS) {
       for (const item of ITEMS) {
         api.contextMenus.create({
-          id: `flow-${item.action}-${group.suffix}`,
+          id: `savetube-${item.action}-${group.suffix}`,
           title: item.title,
           contexts: group.contexts,
           documentUrlPatterns: group.documentUrlPatterns,

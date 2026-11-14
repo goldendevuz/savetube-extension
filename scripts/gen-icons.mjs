@@ -6,21 +6,30 @@ import { flattenPath, bounds, rasterize } from "./svg-raster.mjs";
 
 const SIZES = [16, 48, 128];
 
-// The Flow logo: YouTube-shaped container + slanted "F".
+// The SaveTube logo: a rounded green square with a play button in a ring. The rasteriser fills each
+// shape on its own, so the ring is a white disc with a green disc on top of it.
 const CONTAINER =
-  "M21.58 7.16C21.33 6.22 20.59 5.48 19.65 5.23C17.96 4.77 12 4.77 12 4.77C12 4.77 6.04 4.77 4.35 5.23C3.41 5.48 2.67 6.22 2.42 7.16C1.96 8.85 1.96 12.38 1.96 12.38C1.96 12.38 1.96 15.91 2.42 17.6C2.67 18.54 3.41 19.28 4.35 19.53C6.04 19.99 12 19.99 12 19.99C12 19.99 17.96 19.99 19.65 19.53C20.59 19.28 21.33 18.54 21.58 17.6C22.04 15.91 22.04 12.38 22.04 12.38C22.04 12.38 22.04 8.85 21.58 7.16Z";
-const SYMBOL = "M10 7L18 7L17.2 9.5H12.8L12.2 11.5H16L15.2 14H11.5L10.5 17H7.5L10 7Z";
+  "M5.25 0H18.75C21.65 0 24 2.35 24 5.25V18.75C24 21.65 21.65 24 18.75 24H5.25C2.35 24 0 21.65 0 18.75V5.25C0 2.35 2.35 0 5.25 0Z";
+const RING_OUTER =
+  "M4.125 12C4.125 7.651 7.651 4.125 12 4.125C16.349 4.125 19.875 7.651 19.875 12C19.875 16.349 16.349 19.875 12 19.875C7.651 19.875 4.125 16.349 4.125 12Z";
+const RING_INNER =
+  "M5.625 12C5.625 8.479 8.479 5.625 12 5.625C15.521 5.625 18.375 8.479 18.375 12C18.375 15.521 15.521 18.375 12 18.375C8.479 18.375 5.625 15.521 5.625 12Z";
+const TRIANGLE = "M10.125 8.4375V15.5625L16.125 12Z";
 
-const RED = [0xff, 0x00, 0x00];
+const GREEN = [0x10, 0xb9, 0x81];
 const WHITE = [0xff, 0xff, 0xff];
 
 const container = flattenPath(CONTAINER);
-const symbol = flattenPath(SYMBOL);
-const box = bounds([...container, ...symbol]);
+const ringOuter = flattenPath(RING_OUTER);
+const ringInner = flattenPath(RING_INNER);
+const triangle = flattenPath(TRIANGLE);
+const box = bounds(container);
 
 const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
-  <path d="${CONTAINER}" fill="#FF0000"/>
-  <path d="${SYMBOL}" fill="#FFFFFF"/>
+  <path d="${CONTAINER}" fill="#10B981"/>
+  <path d="${RING_OUTER}" fill="#FFFFFF"/>
+  <path d="${RING_INNER}" fill="#10B981"/>
+  <path d="${TRIANGLE}" fill="#FFFFFF"/>
 </svg>
 `;
 
@@ -31,13 +40,15 @@ export async function generateIcons(dir) {
       size,
       box,
       layers: [
-        { polys: container, color: RED },
-        { polys: symbol, color: WHITE },
+        { polys: container, color: GREEN },
+        { polys: ringOuter, color: WHITE },
+        { polys: ringInner, color: GREEN },
+        { polys: triangle, color: WHITE },
       ],
     });
     await writeFile(path.join(dir, `${size}.png`), encodePng(size, rgba));
   }
-  await writeFile(path.join(dir, "flow-mark.svg"), LOGO_SVG);
+  await writeFile(path.join(dir, "savetube-mark.svg"), LOGO_SVG);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

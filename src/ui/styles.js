@@ -1,12 +1,12 @@
-// Self-contained styles for the Shadow DOM. No YouTube or Flow CSS is imported.
+// Self-contained styles for the Shadow DOM. No YouTube or SaveTube CSS is imported.
 export const STYLES = `
 :host { all: initial; }
 * { box-sizing: border-box; font-family: "Roboto", system-ui, -apple-system, sans-serif; }
 
-.flow-row { display: inline-flex; gap: 8px; align-items: center; }
-.flow-watchbar { display: flex; gap: 8px; align-items: center; padding: 12px 0; }
+.savetube-row { display: inline-flex; gap: 8px; align-items: center; }
+.savetube-watchbar { display: flex; gap: 8px; align-items: center; padding: 12px 0; }
 
-.flow-btn {
+.savetube-btn {
   display: inline-flex; align-items: center; gap: 6px;
   height: 36px; padding: 0 14px;
   border: 1px solid rgba(255,255,255,0.16);
@@ -17,16 +17,16 @@ export const STYLES = `
   cursor: pointer; white-space: nowrap;
   transition: background .15s ease, border-color .15s ease;
 }
-.flow-btn:hover { background: rgba(255,255,255,0.16); }
-.flow-btn:active { transform: translateY(1px); }
-.flow-btn:focus-visible { outline: 2px solid #ff5252; outline-offset: 2px; }
-.flow-btn--primary { background: #ff0000; border-color: transparent; color: #fff; }
-.flow-btn--primary:hover { background: #d90000; }
-.flow-btn--icon { height: 30px; width: 30px; padding: 0; border-radius: 50%; justify-content: center; }
-.flow-btn__icon { display: inline-flex; }
-.flow-btn__label:empty { display: none; }
+.savetube-btn:hover { background: rgba(255,255,255,0.16); }
+.savetube-btn:active { transform: translateY(1px); }
+.savetube-btn:focus-visible { outline: 2px solid #34d399; outline-offset: 2px; }
+.savetube-btn--primary { background: #10b981; border-color: transparent; color: #fff; }
+.savetube-btn--primary:hover { background: #0d946a; }
+.savetube-btn--icon { height: 30px; width: 30px; padding: 0; border-radius: 50%; justify-content: center; }
+.savetube-btn__icon { display: inline-flex; }
+.savetube-btn__label:empty { display: none; }
 
-.flow-overlay {
+.savetube-overlay {
   position: fixed; top: 0; left: 0;
   display: none; gap: 6px; padding: 4px;
   border-radius: 21px; background: rgba(15,15,17,0.86);
@@ -34,18 +34,18 @@ export const STYLES = `
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   pointer-events: auto;
 }
-.flow-overlay.is-visible { display: inline-flex; }
-.flow-overlay .flow-btn {
+.savetube-overlay.is-visible { display: inline-flex; }
+.savetube-overlay .savetube-btn {
   color: #fff; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.12);
 }
-.flow-overlay .flow-btn:hover { background: rgba(255,255,255,0.24); }
+.savetube-overlay .savetube-btn:hover { background: rgba(255,255,255,0.24); }
 
-.flow-toasts {
+.savetube-toasts {
   position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   pointer-events: none;
 }
-.flow-toast {
+.savetube-toast {
   display: inline-flex; align-items: center; gap: 12px;
   max-width: 90vw; padding: 10px 16px;
   border-radius: 10px;
@@ -57,19 +57,19 @@ export const STYLES = `
   transition: opacity .2s ease, transform .2s ease;
   pointer-events: auto;
 }
-.flow-toast.is-visible { opacity: 1; transform: translateY(0); }
-.flow-toast--error { border-color: rgba(255,99,99,0.5); }
-.flow-toast--success { border-color: rgba(88,214,141,0.45); }
-.flow-toast__msg { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.flow-toast__cta {
+.savetube-toast.is-visible { opacity: 1; transform: translateY(0); }
+.savetube-toast--error { border-color: rgba(255,99,99,0.5); }
+.savetube-toast--success { border-color: rgba(88,214,141,0.45); }
+.savetube-toast__msg { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.savetube-toast__cta {
   flex: none; border: 0; border-radius: 6px; padding: 6px 12px;
-  background: #ff0000; color: #fff; font-weight: 600; font-size: 13px; cursor: pointer;
+  background: #10b981; color: #fff; font-weight: 600; font-size: 13px; cursor: pointer;
 }
-.flow-toast__cta:hover { background: #d90000; }
+.savetube-toast__cta:hover { background: #0d946a; }
 
 @media (prefers-color-scheme: light) {
-  .flow-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
-  .flow-btn:hover { background: rgba(0,0,0,0.1); }
-  .flow-btn--primary { color: #fff; }
+  .savetube-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
+  .savetube-btn:hover { background: rgba(0,0,0,0.1); }
+  .savetube-btn--primary { color: #fff; }
 }
 `;

@@ -5,7 +5,7 @@ export function buildDeepLink(action, params) {
   return `${SCHEME}://${action}?${toQuery(params)}`;
 }
 
-// Fires the flow:// url in a hidden iframe (so the YouTube tab never navigates)
+// Fires the savetube:// url in a hidden iframe (so the YouTube tab never navigates)
 // and resolves true if the OS grabbed focus within the window — the signal that
 // the desktop app is launching. Resolves false when nothing handled the scheme.
 export function launchDeepLink(url) {

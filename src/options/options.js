@@ -2,7 +2,7 @@ import { api } from "../lib/browser.js";
 import { bindSettingToggles } from "../lib/bind-settings.js";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "../lib/settings.js";
 import { hasBridgePermission, requestBridgePermission } from "../lib/permissions.js";
-import { FLOW_RELEASE_URL, EXTENSION_REPO_URL } from "../lib/const.js";
+import { SAVETUBE_RELEASE_URL, EXTENSION_REPO_URL } from "../lib/const.js";
 
 const grantBtn = document.getElementById("grant");
 const portsInput = document.getElementById("ports");
@@ -34,7 +34,7 @@ portsInput.addEventListener("change", async () => {
   await saveSettings({ ports });
 });
 
-document.getElementById("get-flow").href = FLOW_RELEASE_URL;
+document.getElementById("get-savetube").href = SAVETUBE_RELEASE_URL;
 document.getElementById("repo").href = EXTENSION_REPO_URL;
 
 (async () => {

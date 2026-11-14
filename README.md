@@ -1,32 +1,32 @@
-# Flow — YouTube extension
+# SaveTube — YouTube extension
 
-[![CI](https://github.com/FlowNeuro/Flow-Extension/actions/workflows/ci.yml/badge.svg)](https://github.com/FlowNeuro/Flow-Extension/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/FlowNeuro/Flow-Extension?sort=semver)](https://github.com/FlowNeuro/Flow-Extension/releases/latest)
+[![CI](https://github.com/goldendevuz/savetube-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/goldendevuz/savetube-extension/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/goldendevuz/savetube-extension?sort=semver)](https://github.com/goldendevuz/savetube-extension/releases/latest)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
-Send any YouTube or YouTube Music video to the [Flow desktop app](https://github.com/FlowNeuro/Flow-Desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever transmits a video id (plus optional timestamp / playlist id); all extraction and playback happen natively inside Flow.
+Send any YouTube or YouTube Music video to the [SaveTube desktop app](https://github.com/goldendevuz/flow-desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever transmits a video id (plus optional timestamp / playlist id); all extraction and playback happen natively inside SaveTube.
 
 ## Install
 
 **From a release (recommended)**
 
-1. Download the latest build from [Releases](https://github.com/FlowNeuro/Flow-Extension/releases/latest):
-   - `flow-extension-chromium-vX.Y.Z.zip` for Chrome / Edge / Brave / Opera / Vivaldi
-   - `flow-extension-firefox-vX.Y.Z.zip` for Firefox
+1. Download the latest build from [Releases](https://github.com/goldendevuz/savetube-extension/releases/latest):
+   - `savetube-extension-chromium-vX.Y.Z.zip` for Chrome / Edge / Brave / Opera / Vivaldi
+   - `savetube-extension-firefox-vX.Y.Z.zip` for Firefox
 2. Unzip it.
 3. Load it:
    - **Chromium** — `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the unzipped folder.
    - **Firefox** — `about:debugging` → **This Firefox** → **Load Temporary Add-on** → pick `manifest.json` inside the unzipped folder.
 
-You also need the **Flow desktop app** installed for the handoff to do anything.
+You also need the **SaveTube desktop app** installed for the handoff to do anything.
 
 ## How it works
 
 Every action runs the same handoff cascade:
 
-1. **Silent bridge** — if Flow is running, an HTTP request to `127.0.0.1` hands off instantly with no prompt.
-2. **Deep link** — otherwise a `flow://` link launches Flow if it's installed.
-3. **Get Flow** — if nothing handles it, a toast links to the desktop release.
+1. **Silent bridge** — if SaveTube is running, an HTTP request to `127.0.0.1` hands off instantly with no prompt.
+2. **Deep link** — otherwise a `savetube://` link launches SaveTube if it's installed.
+3. **Get SaveTube** — if nothing handles it, a toast links to the desktop release.
 
 Surfaces: a button row under the watch-page player, a hover overlay on any video thumbnail, and right-click context-menu items.
 
@@ -47,7 +47,7 @@ scripts/      icon rasteriser · zip · package · version check
 build.mjs     esbuild bundler → dist/chromium + dist/firefox
 ```
 
-Each module does one thing; nothing imports YouTube or Flow CSS. All injected UI lives in a Shadow DOM.
+Each module does one thing; nothing imports YouTube or SaveTube CSS. All injected UI lives in a Shadow DOM.
 
 ## Develop
 
@@ -60,11 +60,11 @@ npm run release        # build + package
 npm run format         # format with Prettier
 ```
 
-Icons are generated from the Flow logo by a dependency-free SVG rasteriser (`scripts/`), so no binary assets are committed.
+Icons are generated from the SaveTube logo by a dependency-free SVG rasteriser (`scripts/`), so no binary assets are committed.
 
 ## Silent mode
 
-Silent mode calls `127.0.0.1`, which needs an optional host permission requested on demand (from the popup or Settings). Without it the extension still works via the `flow://` deep link — just with the browser's "Open Flow?" prompt. The popup shows live connection status once access is granted.
+Silent mode calls `127.0.0.1`, which needs an optional host permission requested on demand (from the popup or Settings). Without it the extension still works via the `savetube://` deep link — just with the browser's "Open SaveTube?" prompt. The popup shows live connection status once access is granted.
 
 ## Releasing
 
@@ -77,16 +77,16 @@ The [release workflow](.github/workflows/release.yml) verifies the tag matches `
 
 ## The bridge contract
 
-Shared with Flow Desktop — keep both sides identical.
+Shared with SaveTube Desktop — keep both sides identical.
 
 ```
-flow://watch?v=<ID>[&t=<SECONDS>][&list=<PLAYLIST_ID>]
-flow://download?v=<ID>
-flow://music?v=<ID>
+savetube://watch?v=<ID>[&t=<SECONDS>][&list=<PLAYLIST_ID>]
+savetube://download?v=<ID>
+savetube://music?v=<ID>
 
-GET http://127.0.0.1:47893/flow/ping      → { "app": "flow", "version": "…" }
-GET http://127.0.0.1:47893/flow/watch     ?v,t?,list?
-GET http://127.0.0.1:47893/flow/download  ?v
+GET http://127.0.0.1:47893/savetube/ping      → { "app": "savetube", "version": "…" }
+GET http://127.0.0.1:47893/savetube/watch     ?v,t?,list?
+GET http://127.0.0.1:47893/savetube/download  ?v
 ```
 
 - Ports probed in order: `47893`, `47894`, `47895` (configurable in Settings).

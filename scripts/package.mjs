@@ -24,7 +24,7 @@ for (const target of TARGETS) {
     process.exit(1);
   }
   const buffer = await zipDir(dist);
-  const file = path.join(OUT_DIR, `flow-extension-${target}-v${version}.zip`);
+  const file = path.join(OUT_DIR, `savetube-extension-${target}-v${version}.zip`);
   await writeFile(file, buffer);
   console.log(`packaged ${file} (${(buffer.length / 1024).toFixed(1)} KB)`);
 }
