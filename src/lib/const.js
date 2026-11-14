@@ -6,7 +6,7 @@ export const PING_TIMEOUT_MS = 600;
 export const HANDOFF_TIMEOUT_MS = 1500;
 
 export const SAVETUBE_RELEASE_URL =
-  "https://github.com/goldendevuz/flow-desktop/releases/latest";
+  "https://github.com/goldendevuz/savetube-desktop/releases/latest";
 export const EXTENSION_REPO_URL = "https://github.com/goldendevuz/savetube-extension";
 
 export const VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;

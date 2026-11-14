@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.2]
+
+### Changed
+
+- Renamed to SaveTube: the `savetube://` link, the `/savetube/` bridge paths (the desktop app answers as `savetube`), new icon and texts. Based on the Flow extension by A-EDev.
+- Links point at the `savetube-desktop` repository.
+
 ## [1.0.1]
 
 ### Fixed

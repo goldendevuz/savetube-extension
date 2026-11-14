@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: SaveTube desktop app
-    url: https://github.com/goldendevuz/flow-desktop
+    url: https://github.com/goldendevuz/savetube-desktop
     about: Issues with playback, downloads, or the savetube:// handoff belong in the desktop repo.
   - name: Questions & discussion
     url: https://github.com/goldendevuz/savetube-extension/discussions

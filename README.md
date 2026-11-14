@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/goldendevuz/savetube-extension?sort=semver)](https://github.com/goldendevuz/savetube-extension/releases/latest)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
-Send any YouTube or YouTube Music video to the [SaveTube desktop app](https://github.com/goldendevuz/flow-desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever transmits a video id (plus optional timestamp / playlist id); all extraction and playback happen natively inside SaveTube.
+Send any YouTube or YouTube Music video to the [SaveTube desktop app](https://github.com/goldendevuz/savetube-desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever transmits a video id (plus optional timestamp / playlist id); all extraction and playback happen natively inside SaveTube.
 
 > SaveTube's extension is a fork of the [Flow extension](https://github.com/Flow-Tube/Flow-Extension) by A-EDev, released under GPL-3.0 like the original. Copyright © A-EDev; SaveTube's changes use the same licence.
 
