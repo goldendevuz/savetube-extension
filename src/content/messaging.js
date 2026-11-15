@@ -2,6 +2,8 @@ import { api } from "../lib/browser.js";
 import { MSG, ACTION } from "../lib/messages.js";
 import { idFromWatchUrl, currentWatchId } from "../extract/video-id.js";
 import { toast } from "../ui/toast.js";
+import { t } from "../lib/i18n.js";
+import { STORE } from "../lib/edition.js";
 
 // Handles context-menu clicks forwarded from the background service worker.
 export function listenForContextMenu(actions) {
@@ -10,11 +12,12 @@ export function listenForContextMenu(actions) {
 
     const id = idFromWatchUrl(msg.src) || currentWatchId();
     if (!id) {
-      toast({ message: "No YouTube video found here", variant: "error" });
+      toast({ message: t("No YouTube video found here"), variant: "error" });
       return;
     }
 
-    if (msg.action === ACTION.DOWNLOAD) actions.download(id);
-    else actions.watch(id);
+    if (msg.action === ACTION.DOWNLOAD) {
+      if (!STORE) actions.download(id);
+    } else actions.watch(id);
   });
 }

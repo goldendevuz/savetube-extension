@@ -1,4 +1,6 @@
 import { api } from "../lib/browser.js";
+import { initI18n, t } from "../lib/i18n.js";
+import { STORE } from "../lib/edition.js";
 
 const DOCUMENT_PATTERNS = ["*://*.youtube.com/*"];
 const VIDEO_URL_PATTERNS = [
@@ -27,20 +29,21 @@ const MENU_GROUPS = [
 
 const ITEMS = [
   { action: "watch", title: "Watch in SaveTube" },
-  { action: "download", title: "Download with SaveTube" },
+  ...(STORE ? [] : [{ action: "download", title: "Download with SaveTube" }]),
 ];
 
 export function menuAction(menuItemId) {
   return String(menuItemId).includes("download") ? "download" : "watch";
 }
 
-export function createMenus() {
+export async function createMenus() {
+  await initI18n();
   api.contextMenus.removeAll(() => {
     for (const group of MENU_GROUPS) {
       for (const item of ITEMS) {
         api.contextMenus.create({
           id: `savetube-${item.action}-${group.suffix}`,
-          title: item.title,
+          title: t(item.title),
           contexts: group.contexts,
           documentUrlPatterns: group.documentUrlPatterns,
           ...(group.targetUrlPatterns && { targetUrlPatterns: group.targetUrlPatterns }),

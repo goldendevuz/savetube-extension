@@ -2,7 +2,8 @@ import { readFile, writeFile, mkdir, access } from "node:fs/promises";
 import path from "node:path";
 import { zipDir } from "./zip.mjs";
 
-const TARGETS = ["chromium", "firefox"];
+const store = process.argv.includes("--store");
+const TARGETS = store ? ["store-chromium"] : ["chromium", "firefox"];
 const OUT_DIR = "release";
 
 async function exists(p) {

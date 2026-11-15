@@ -3,6 +3,7 @@ import { sendToBridge } from "./http.js";
 import { buildDeepLink, launchDeepLink } from "./deep-link.js";
 import { SAVETUBE_RELEASE_URL } from "../lib/const.js";
 import { log } from "../lib/log.js";
+import { t } from "../lib/i18n.js";
 
 export const HANDOFF = {
   SILENT: "silent",
@@ -20,7 +21,7 @@ export async function handoff(action, params, { ports, silent = true, toast } = 
     if (running) {
       try {
         if (await sendToBridge(running.port, action, params)) {
-          toast?.({ message: "Sent to SaveTube", variant: "success" });
+          toast?.({ message: t("Sent to SaveTube"), variant: "success" });
           return HANDOFF.SILENT;
         }
       } catch (err) {
@@ -30,14 +31,14 @@ export async function handoff(action, params, { ports, silent = true, toast } = 
   }
 
   if (await launchDeepLink(buildDeepLink(action, params))) {
-    toast?.({ message: "Opening SaveTube…", variant: "info" });
+    toast?.({ message: t("Opening SaveTube…"), variant: "info" });
     return HANDOFF.LAUNCHED;
   }
 
   toast?.({
-    message: "SaveTube isn't installed",
+    message: t("SaveTube isn't installed"),
     variant: "error",
-    cta: { label: "Get SaveTube", href: SAVETUBE_RELEASE_URL },
+    cta: { label: t("Get SaveTube"), href: SAVETUBE_RELEASE_URL },
   });
   return HANDOFF.NOT_INSTALLED;
 }

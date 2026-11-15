@@ -3,6 +3,7 @@ import { bindSettingToggles } from "../lib/bind-settings.js";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "../lib/settings.js";
 import { hasBridgePermission, requestBridgePermission } from "../lib/permissions.js";
 import { SAVETUBE_RELEASE_URL, EXTENSION_REPO_URL } from "../lib/const.js";
+import { LANGUAGES, initI18n, applyTranslations, t } from "../lib/i18n.js";
 
 const grantBtn = document.getElementById("grant");
 const portsInput = document.getElementById("ports");
@@ -11,7 +12,7 @@ document.getElementById("version").textContent = `v${api.runtime.getManifest().v
 
 async function refreshGrant() {
   const granted = await hasBridgePermission();
-  grantBtn.textContent = granted ? "Access granted" : "Grant access";
+  grantBtn.textContent = granted ? t("Access granted") : t("Grant access");
   grantBtn.disabled = granted;
 }
 
@@ -37,7 +38,25 @@ portsInput.addEventListener("change", async () => {
 document.getElementById("get-savetube").href = SAVETUBE_RELEASE_URL;
 document.getElementById("repo").href = EXTENSION_REPO_URL;
 
+const languageSelect = document.getElementById("language");
+
+function fillLanguages(chosen) {
+  languageSelect.replaceChildren(
+    new Option(t("Automatic"), "auto"),
+    ...LANGUAGES.map(({ code, label }) => new Option(label, code)),
+  );
+  languageSelect.value = chosen;
+}
+
+languageSelect.addEventListener("change", async () => {
+  await saveSettings({ language: languageSelect.value });
+  location.reload();
+});
+
 (async () => {
+  await initI18n();
+  applyTranslations();
+  fillLanguages((await loadSettings()).language);
   await bindSettingToggles(document, {
     silentMode: {
       onEnable: async () =>

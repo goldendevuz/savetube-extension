@@ -2,6 +2,8 @@ import { WATCH_METADATA_SELECTOR, WATCH_ROW_CONTAINERS } from "../extract/select
 import { createInlineHost } from "./shadow-host.js";
 import { createButton } from "./button.js";
 import { playIcon, downloadIcon } from "./icons.js";
+import { t } from "../lib/i18n.js";
+import { STORE } from "../lib/edition.js";
 
 const HOST_ID = "savetube-ext-watch-row";
 const HOST_CSS = "all: initial; display: block; width: 100%;";
@@ -31,15 +33,19 @@ export function injectWatchRow({ onWatch, onDownload }) {
   row.append(
     createButton({
       icon: playIcon,
-      label: "Watch in SaveTube",
+      label: t("Watch in SaveTube"),
       variant: "primary",
       onClick: onWatch,
     }),
-    createButton({
-      icon: downloadIcon,
-      label: "Download",
-      onClick: onDownload,
-    }),
+    ...(STORE
+      ? []
+      : [
+          createButton({
+            icon: downloadIcon,
+            label: t("Download"),
+            onClick: onDownload,
+          }),
+        ]),
   );
   root.appendChild(row);
 
