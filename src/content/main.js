@@ -6,6 +6,7 @@ import { onNavigate } from "./navigation.js";
 import { createActions } from "./actions.js";
 import { listenForContextMenu } from "./messaging.js";
 import { log } from "../lib/log.js";
+import { setLanguage } from "../lib/i18n.js";
 
 let settings;
 const actions = createActions(() => settings);
@@ -23,6 +24,7 @@ function render() {
 
 async function start() {
   settings = await loadSettings();
+  setLanguage(settings.language);
 
   initOverlay({
     onWatch: (id) => actions.watch(id),
@@ -35,6 +37,7 @@ async function start() {
   onNavigate(render);
   onSettingsChanged((next) => {
     settings = next;
+    setLanguage(settings.language);
     setOverlayEnabled(settings.overlayOnThumbnails);
     render();
   });

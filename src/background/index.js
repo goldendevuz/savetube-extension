@@ -1,6 +1,7 @@
 import { api } from "../lib/browser.js";
 import { MSG } from "../lib/messages.js";
 import { createMenus, menuAction } from "./context-menus.js";
+import { onSettingsChanged } from "../lib/settings.js";
 
 // MV3 service workers are ephemeral — (re)create menus on both events.
 api.runtime.onInstalled.addListener((details) => {
@@ -8,6 +9,8 @@ api.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") api.runtime.openOptionsPage?.();
 });
 api.runtime.onStartup.addListener(createMenus);
+// The menu titles follow the language setting.
+onSettingsChanged(() => createMenus());
 
 // Delegate to the content script so the bridge + focus detection run in the page.
 api.contextMenus.onClicked.addListener((info, tab) => {

@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- The extension speaks English, Russian and Uzbek: the popup, the settings page, the buttons on YouTube, the right-click menu and the messages. A new Language setting picks one, or follows the browser.
+
 ## [1.0.3]
 
 ### Fixed
