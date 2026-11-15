@@ -1,5 +1,6 @@
 import { api } from "../lib/browser.js";
 import { initI18n, t } from "../lib/i18n.js";
+import { STORE } from "../lib/edition.js";
 
 const DOCUMENT_PATTERNS = ["*://*.youtube.com/*"];
 const VIDEO_URL_PATTERNS = [
@@ -28,7 +29,7 @@ const MENU_GROUPS = [
 
 const ITEMS = [
   { action: "watch", title: "Watch in SaveTube" },
-  { action: "download", title: "Download with SaveTube" },
+  ...(STORE ? [] : [{ action: "download", title: "Download with SaveTube" }]),
 ];
 
 export function menuAction(menuItemId) {

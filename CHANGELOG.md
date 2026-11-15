@@ -8,6 +8,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- A Chrome Web Store edition (`npm run release:store`): Watch only, with no download buttons, no download menu item and neutral wording, named "SaveTube — Watch on YouTube". The store rejected the first submission because it helped download YouTube videos. The full edition, with Download, is still built by `npm run release` and installed by hand.
 - The extension speaks English, Russian and Uzbek: the popup, the settings page, the buttons on YouTube, the right-click menu and the messages. A new Language setting picks one, or follows the browser.
 
 ## [1.0.3]

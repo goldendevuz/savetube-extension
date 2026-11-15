@@ -1,4 +1,6 @@
 import { loadSettings } from "./settings.js";
+import { STORE } from "./edition.js";
+import { DOWNLOAD_TEXT } from "./i18n-download.js";
 
 // The extension's own translations. Chrome's built-in extension locales have no Uzbek, so the text is kept
 // here, keyed by the English text, and the language is a setting ("auto" follows the browser).
@@ -9,27 +11,27 @@ export const LANGUAGES = [
   { code: "uz", label: "Oʻzbekcha" },
 ];
 
-const TABLES = {
+const BASE = {
   ru: {
+    "Open YouTube videos in the SaveTube desktop app.":
+      "Открывайте видео YouTube в приложении SaveTube для компьютера.",
+    "Add a Watch row under the player": "Добавить ряд «Смотреть» под плеером",
+    "Play music.youtube.com links in SaveTube’s music player":
+      "Воспроизводить ссылки music.youtube.com в музыкальном плеере SaveTube",
+    "SaveTube — Watch on YouTube": "SaveTube — смотреть на YouTube",
     "SaveTube — Settings": "SaveTube — Настройки",
     "SaveTube for YouTube": "SaveTube для YouTube",
-    "Send videos to the SaveTube desktop app to watch or download.":
-      "Отправляйте видео в приложение SaveTube для компьютера, чтобы смотреть или скачивать.",
     Surfaces: "Где показывать",
     "Thumbnail overlay": "Кнопки на превью",
     "Hover any video card for quick actions":
       "Наведите курсор на любое видео для быстрых действий",
     "Overlay on thumbnails": "Кнопки на превью",
     "Watch-page buttons": "Кнопки на странице просмотра",
-    "Add a Watch/Download row under the player":
-      "Добавить ряд «Смотреть/Скачать» под плеером",
     Handoff: "Передача",
     "Include timestamp": "Передавать время",
     "Continue where you paused on “Watch in SaveTube”":
       "Продолжать с места паузы при нажатии «Смотреть в SaveTube»",
     "Route YouTube Music as music": "Открывать YouTube Music как музыку",
-    "Play and download music.youtube.com links in SaveTube’s music player":
-      "Воспроизводить и скачивать ссылки music.youtube.com в музыкальном плеере SaveTube",
     "Silent bridge": "Тихий мост",
     "Silent mode": "Тихий режим",
     "Use the local bridge so SaveTube reacts without an “Open?” prompt":
@@ -55,33 +57,31 @@ const TABLES = {
     Language: "Язык",
     Automatic: "Автоматически",
     "Watch in SaveTube": "Смотреть в SaveTube",
-    Download: "Скачать",
-    "Download with SaveTube": "Скачать через SaveTube",
     "Sent to SaveTube": "Отправлено в SaveTube",
     "Opening SaveTube…": "Открываем SaveTube…",
     "SaveTube isn't installed": "SaveTube не установлен",
     "No YouTube video found here": "Здесь не найдено видео YouTube",
   },
   uz: {
+    "Open YouTube videos in the SaveTube desktop app.":
+      "YouTube videolarini kompyuterdagi SaveTube ilovasida oching.",
+    "Add a Watch row under the player": "Pleyer ostiga «Koʻrish» qatorini qoʻshish",
+    "Play music.youtube.com links in SaveTube’s music player":
+      "music.youtube.com havolalarini SaveTube musiqa pleyerida ijro etish",
+    "SaveTube — Watch on YouTube": "SaveTube — YouTube’da koʻrish",
     "SaveTube — Settings": "SaveTube — Sozlamalar",
     "SaveTube for YouTube": "YouTube uchun SaveTube",
-    "Send videos to the SaveTube desktop app to watch or download.":
-      "Ko‘rish yoki yuklab olish uchun videolarni SaveTube kompyuter ilovasiga yuboring.",
     Surfaces: "Qayerda ko‘rsatish",
     "Thumbnail overlay": "Muqovadagi tugmalar",
     "Hover any video card for quick actions":
       "Tezkor amallar uchun istalgan video ustiga kursorni olib boring",
     "Overlay on thumbnails": "Muqovadagi tugmalar",
     "Watch-page buttons": "Ko‘rish sahifasidagi tugmalar",
-    "Add a Watch/Download row under the player":
-      "Pleyer ostiga “Ko‘rish/Yuklab olish” qatorini qo‘shish",
     Handoff: "Topshirish",
     "Include timestamp": "Vaqtni ham yuborish",
     "Continue where you paused on “Watch in SaveTube”":
       "“SaveTube da ko‘rish” bosilganda to‘xtagan joyingizdan davom etish",
     "Route YouTube Music as music": "YouTube Music ni musiqa sifatida ochish",
-    "Play and download music.youtube.com links in SaveTube’s music player":
-      "music.youtube.com havolalarini SaveTube musiqa pleyerida ijro etish va yuklab olish",
     "Silent bridge": "Jimjit ko‘prik",
     "Silent mode": "Jimjit rejim",
     "Use the local bridge so SaveTube reacts without an “Open?” prompt":
@@ -107,13 +107,17 @@ const TABLES = {
     Language: "Til",
     Automatic: "Avtomatik",
     "Watch in SaveTube": "SaveTube da ko‘rish",
-    Download: "Yuklab olish",
-    "Download with SaveTube": "SaveTube bilan yuklab olish",
     "Sent to SaveTube": "SaveTube ga yuborildi",
     "Opening SaveTube…": "SaveTube ochilmoqda…",
     "SaveTube isn't installed": "SaveTube o‘rnatilmagan",
     "No YouTube video found here": "Bu yerda YouTube videosi topilmadi",
   },
+};
+
+// Download wording is kept out of the Chrome Web Store build (see ./edition.js).
+const TABLES = {
+  ru: { ...BASE.ru, ...(STORE ? {} : DOWNLOAD_TEXT.ru) },
+  uz: { ...BASE.uz, ...(STORE ? {} : DOWNLOAD_TEXT.uz) },
 };
 
 // Uzbek uses the standard Latin letters: oʻ and gʻ with U+02BB, the apostrophe sign with U+02BC.

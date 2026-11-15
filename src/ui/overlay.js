@@ -4,6 +4,7 @@ import { playIcon, downloadIcon } from "./icons.js";
 import { CARD_SELECTOR } from "../extract/selectors.js";
 import { idFromCard } from "../extract/video-id.js";
 import { t } from "../lib/i18n.js";
+import { STORE } from "../lib/edition.js";
 
 const HIDE_DELAY_MS = 120;
 
@@ -27,12 +28,16 @@ function ensureOverlay() {
       title: t("Watch in SaveTube"),
       onClick: () => activeId && handlers?.onWatch(activeId),
     }),
-    createButton({
-      icon: downloadIcon,
-      variant: "icon",
-      title: t("Download with SaveTube"),
-      onClick: () => activeId && handlers?.onDownload(activeId),
-    }),
+    ...(STORE
+      ? []
+      : [
+          createButton({
+            icon: downloadIcon,
+            variant: "icon",
+            title: t("Download with SaveTube"),
+            onClick: () => activeId && handlers?.onDownload(activeId),
+          }),
+        ]),
   );
   floatingRoot().appendChild(overlayEl);
   return overlayEl;
