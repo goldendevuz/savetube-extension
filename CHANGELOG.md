@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-11-15
+
 ### Added
 
 - A Chrome Web Store edition (`npm run release:store`): Watch only, with no download buttons, no download menu item and neutral wording, named "SaveTube — Watch on YouTube". The store rejected the first submission because it helped download YouTube videos. The full edition, with Download, is still built by `npm run release` and installed by hand.

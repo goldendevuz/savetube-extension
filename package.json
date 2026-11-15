@@ -1,6 +1,6 @@
 {
   "name": "savetube-extension",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "type": "module",
   "description": "Send any YouTube video to the SaveTube desktop app to watch or download.",

@@ -24,7 +24,9 @@ jobs:
         run: node scripts/check-version.mjs "${{ github.ref_name }}"
 
       - name: Build and package
-        run: npm run release
+        run: |
+          npm run release
+          npm run release:store
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
