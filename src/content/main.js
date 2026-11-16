@@ -5,6 +5,7 @@ import { initOverlay, setOverlayEnabled } from "../ui/overlay.js";
 import { onNavigate } from "./navigation.js";
 import { createActions } from "./actions.js";
 import { listenForContextMenu } from "./messaging.js";
+import { startDailyLimit } from "./daily-limit.js";
 import { log } from "../lib/log.js";
 import { setLanguage } from "../lib/i18n.js";
 
@@ -33,6 +34,7 @@ async function start() {
   setOverlayEnabled(settings.overlayOnThumbnails);
 
   listenForContextMenu(actions);
+  startDailyLimit(() => settings);
 
   onNavigate(render);
   onSettingsChanged((next) => {

@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-11-16
+
+### Added
+
+- Daily limit, the same rules as the SaveTube apps: set how long videos may play each day (15 minutes to 8 hours; YouTube Music counts only if you ask). A warning comes five minutes before the end, everything pauses when the time is up, and Keep watching adds 15 minutes after a 30 second wait. Turning the limit off or lowering it after it ran out waits 30 seconds first. The popup shows today's time.
+
 ## [1.0.4] - 2026-11-15
 
 ### Added

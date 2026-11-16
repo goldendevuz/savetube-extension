@@ -1,6 +1,6 @@
 {
   "name": "savetube-extension",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "type": "module",
   "description": "Send any YouTube video to the SaveTube desktop app to watch or download.",
@@ -23,6 +23,7 @@
     "release": "npm run build && npm run package",
     "build:store": "node build.mjs --store",
     "release:store": "node build.mjs --store && node scripts/package.mjs --store",
+    "test": "node --test",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
