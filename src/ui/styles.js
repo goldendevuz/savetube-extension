@@ -67,6 +67,26 @@ export const STYLES = `
 }
 .savetube-toast__cta:hover { background: #0d946a; }
 
+.savetube-limit {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.72); pointer-events: auto; padding: 16px;
+}
+.savetube-limit__card {
+  width: min(420px, 100%); padding: 24px; border-radius: 16px;
+  background: #1f1f22; color: #f1f1f1; border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5); font-family: system-ui, sans-serif;
+}
+.savetube-limit__title { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+.savetube-limit__body { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
+.savetube-limit__note { margin: 0 0 20px; font-size: 12px; color: rgba(241,241,241,0.65); }
+.savetube-limit__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.savetube-limit__btn {
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 9px 16px;
+  background: transparent; color: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.savetube-limit__btn:disabled { opacity: 0.5; cursor: default; }
+.savetube-limit__btn--primary { background: #10b981; border-color: transparent; color: #fff; }
+
 @media (prefers-color-scheme: light) {
   .savetube-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
   .savetube-btn:hover { background: rgba(0,0,0,0.1); }

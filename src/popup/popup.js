@@ -4,6 +4,9 @@ import { findRunning } from "../bridge/ping.js";
 import { hasBridgePermission, requestBridgePermission } from "../lib/permissions.js";
 import { SAVETUBE_RELEASE_URL } from "../lib/const.js";
 import { initI18n, applyTranslations, t } from "../lib/i18n.js";
+import { localEpochDay, rollover, validMinutes } from "../lib/daily-limit.js";
+import { loadTally } from "../lib/daily-tally.js";
+import { formatDuration } from "../lib/format-duration.js";
 
 const statusEl = document.getElementById("status");
 
@@ -45,4 +48,15 @@ document.getElementById("open-options").addEventListener("click", () => {
     },
   });
   refreshStatus(settings);
+
+  if (settings.dailyLimit) {
+    const tally = rollover(await loadTally(), localEpochDay(Date.now()));
+    const line = document.getElementById("limit-line");
+    line.textContent = t(
+      "Today: %s of %s",
+      formatDuration(tally.playedMs),
+      formatDuration(validMinutes(settings.dailyLimitMinutes) * 60_000 + tally.extraMs),
+    );
+    line.hidden = false;
+  }
 })();

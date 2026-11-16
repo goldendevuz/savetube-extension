@@ -4,6 +4,15 @@ import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "../lib/settings.js
 import { hasBridgePermission, requestBridgePermission } from "../lib/permissions.js";
 import { SAVETUBE_RELEASE_URL, EXTENSION_REPO_URL } from "../lib/const.js";
 import { LANGUAGES, initI18n, applyTranslations, t } from "../lib/i18n.js";
+import {
+  MINUTE_CHOICES,
+  WAIT_MS,
+  changeNeedsWait,
+  localEpochDay,
+  validMinutes,
+} from "../lib/daily-limit.js";
+import { loadTally } from "../lib/daily-tally.js";
+import { formatDuration } from "../lib/format-duration.js";
 
 const grantBtn = document.getElementById("grant");
 const portsInput = document.getElementById("ports");
@@ -53,10 +62,100 @@ languageSelect.addEventListener("change", async () => {
   location.reload();
 });
 
+// The daily limit. Turning it off or lowering it after it ran out today asks for a short wait first.
+const limitOn = document.getElementById("daily-limit");
+const limitMinutes = document.getElementById("daily-limit-minutes");
+const limitMusic = document.getElementById("daily-limit-music");
+const limitRows = document.getElementById("daily-limit-rows");
+const limitWait = document.getElementById("daily-limit-wait");
+const limitConfirm = document.getElementById("daily-limit-confirm");
+const limitCancel = document.getElementById("daily-limit-cancel");
+let waitTimer;
+let pendingLimit = null;
+
+function limitFrom(settings) {
+  return {
+    enabled: !!settings.dailyLimit,
+    minutes: validMinutes(settings.dailyLimitMinutes),
+    countMusic: !!settings.dailyLimitMusic,
+  };
+}
+
+function renderLimit(limit) {
+  limitOn.checked = limit.enabled;
+  limitMinutes.value = String(limit.minutes);
+  limitMusic.checked = limit.countMusic;
+  limitRows.hidden = !limit.enabled;
+}
+
+async function applyLimit(next) {
+  await saveSettings({
+    dailyLimit: next.enabled,
+    dailyLimitMinutes: next.minutes,
+    dailyLimitMusic: next.countMusic,
+  });
+  renderLimit(next);
+}
+
+function stopWaiting(current) {
+  clearInterval(waitTimer);
+  pendingLimit = null;
+  limitWait.hidden = true;
+  renderLimit(current);
+}
+
+function startWaiting(current, next) {
+  pendingLimit = next;
+  limitWait.hidden = false;
+  const readyAt = Date.now() + WAIT_MS;
+  const refresh = () => {
+    const secondsLeft = Math.max(0, Math.ceil((readyAt - Date.now()) / 1000));
+    limitConfirm.disabled = secondsLeft > 0;
+    limitConfirm.textContent =
+      secondsLeft > 0 ? t("Wait %s s", secondsLeft) : t("Change");
+  };
+  refresh();
+  clearInterval(waitTimer);
+  waitTimer = setInterval(refresh, 500);
+  limitCancel.onclick = () => stopWaiting(current);
+  limitConfirm.onclick = async () => {
+    const chosen = pendingLimit;
+    stopWaiting(current);
+    if (chosen) await applyLimit(chosen);
+  };
+}
+
+async function requestLimitChange(next) {
+  const current = limitFrom(await loadSettings());
+  const tally = await loadTally();
+  if (changeNeedsWait(current, next, tally, localEpochDay(Date.now())))
+    startWaiting(current, next);
+  else await applyLimit(next);
+}
+
+function readLimitForm() {
+  return {
+    enabled: limitOn.checked,
+    minutes: Number(limitMinutes.value),
+    countMusic: limitMusic.checked,
+  };
+}
+
+for (const control of [limitOn, limitMinutes, limitMusic]) {
+  control.addEventListener("change", () => requestLimitChange(readLimitForm()));
+}
+
 (async () => {
   await initI18n();
   applyTranslations();
-  fillLanguages((await loadSettings()).language);
+  const loaded = await loadSettings();
+  limitMinutes.replaceChildren(
+    ...MINUTE_CHOICES.map(
+      (minutes) => new Option(formatDuration(minutes * 60_000), String(minutes)),
+    ),
+  );
+  renderLimit(limitFrom(loaded));
+  fillLanguages(loaded.language);
   await bindSettingToggles(document, {
     silentMode: {
       onEnable: async () =>

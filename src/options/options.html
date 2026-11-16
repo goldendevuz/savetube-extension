@@ -94,6 +94,48 @@
       </section>
 
       <section class="group">
+        <h2>Daily limit</h2>
+        <div class="row">
+          <span class="row__label">
+            Daily limit
+            <small>Pause videos after a set time each day</small>
+          </span>
+          <input id="daily-limit" type="checkbox" />
+        </div>
+        <div id="daily-limit-rows" hidden>
+          <div class="row">
+            <span class="row__label">
+              Limit
+              <small>How long videos can play each day</small>
+            </span>
+            <select id="daily-limit-minutes" class="text"></select>
+          </div>
+          <div class="row">
+            <span class="row__label">
+              Count music too
+              <small>YouTube Music counts toward the limit and pauses with it</small>
+            </span>
+            <input id="daily-limit-music" type="checkbox" />
+          </div>
+          <p class="note">Counts the time videos play on YouTube in this browser.</p>
+        </div>
+        <div id="daily-limit-wait" class="row" hidden>
+          <span class="row__label">
+            Change your limit?
+            <small
+              >Your limit already ran out today, so changing it takes a short wait.</small
+            >
+          </span>
+          <span>
+            <button id="daily-limit-confirm" type="button" class="btn" disabled>
+              Change
+            </button>
+            <button id="daily-limit-cancel" type="button" class="btn">Close</button>
+          </span>
+        </div>
+      </section>
+
+      <section class="group">
         <h2>Language</h2>
         <div class="row">
           <span class="row__label">Language</span>

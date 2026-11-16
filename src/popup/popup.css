@@ -177,3 +177,10 @@ input[type="checkbox"]:focus-visible {
   color: var(--accent);
   font-weight: 600;
 }
+
+.limit-line {
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 12px;
+  opacity: 0.8;
+}

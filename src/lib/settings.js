@@ -10,6 +10,9 @@ export const DEFAULT_SETTINGS = {
   includeTimestamp: true,
   musicAsMusic: true,
   language: "auto",
+  dailyLimit: false,
+  dailyLimitMinutes: 120,
+  dailyLimitMusic: false,
   ports: BRIDGE_PORTS,
 };
 

@@ -13,6 +13,33 @@ export const LANGUAGES = [
 
 const BASE = {
   ru: {
+    "Daily limit": "Дневной лимит",
+    "Pause videos after a set time each day":
+      "Приостанавливать видео после заданного времени каждый день",
+    Limit: "Лимит",
+    "How long videos can play each day":
+      "Сколько времени видео могут воспроизводиться каждый день",
+    "Count music too": "Считать и музыку",
+    "YouTube Music counts toward the limit and pauses with it":
+      "YouTube Music учитывается в лимите и приостанавливается вместе с ним",
+    "Counts the time videos play on YouTube in this browser.":
+      "Считает время воспроизведения видео на YouTube в этом браузере.",
+    "Change your limit?": "Изменить лимит?",
+    "Your limit already ran out today, so changing it takes a short wait.":
+      "Ваш лимит сегодня уже исчерпан, поэтому для изменения нужно немного подождать.",
+    Change: "Изменить",
+    Close: "Закрыть",
+    "Wait %s s": "Подождите %s с",
+    "Time's up": "Время вышло",
+    "You watched %s today. Your daily limit is %s.":
+      "Сегодня вы смотрели %s. Ваш дневной лимит: %s.",
+    "Keep watching adds 15 minutes.": "«Продолжить просмотр» добавляет 15 минут.",
+    "Keep watching in %s s": "Продолжить просмотр через %s с",
+    "Keep watching": "Продолжить просмотр",
+    "5 minutes left today": "Сегодня осталось 5 минут",
+    "%s h %s min": "%s ч %s мин",
+    "%s min": "%s мин",
+    "Today: %s of %s": "Сегодня: %s из %s",
     "Open YouTube videos in the SaveTube desktop app.":
       "Открывайте видео YouTube в приложении SaveTube для компьютера.",
     "Add a Watch row under the player": "Добавить ряд «Смотреть» под плеером",
@@ -63,6 +90,33 @@ const BASE = {
     "No YouTube video found here": "Здесь не найдено видео YouTube",
   },
   uz: {
+    "Daily limit": "Kunlik chegara",
+    "Pause videos after a set time each day":
+      "Har kuni belgilangan vaqtdan keyin videolarni toʻxtatish",
+    Limit: "Chegara",
+    "How long videos can play each day":
+      "Videolar har kuni qancha vaqt ijro etilishi mumkin",
+    "Count music too": "Musiqani ham hisoblash",
+    "YouTube Music counts toward the limit and pauses with it":
+      "YouTube Music chegaraga hisoblanadi va u bilan birga toʻxtaydi",
+    "Counts the time videos play on YouTube in this browser.":
+      "Shu brauzerda YouTubeʼda videolar ijro etilgan vaqtni hisoblaydi.",
+    "Change your limit?": "Chegarani oʻzgartirasizmi?",
+    "Your limit already ran out today, so changing it takes a short wait.":
+      "Chegarangiz bugun allaqachon tugagan, shuning uchun uni oʻzgartirish uchun qisqa kutish kerak.",
+    Change: "Oʻzgartirish",
+    Close: "Yopish",
+    "Wait %s s": "%s s kuting",
+    "Time's up": "Vaqt tugadi",
+    "You watched %s today. Your daily limit is %s.":
+      "Bugun %s koʻrdingiz. Kunlik chegarangiz %s.",
+    "Keep watching adds 15 minutes.": "Koʻrishda davom etish 15 daqiqa qoʻshadi.",
+    "Keep watching in %s s": "%s s dan keyin koʻrishda davom etish",
+    "Keep watching": "Koʻrishda davom etish",
+    "5 minutes left today": "Bugun 5 daqiqa qoldi",
+    "%s h %s min": "%s soat %s daq",
+    "%s min": "%s daq",
+    "Today: %s of %s": "Bugun: %s / %s",
     "Open YouTube videos in the SaveTube desktop app.":
       "YouTube videolarini kompyuterdagi SaveTube ilovasida oching.",
     "Add a Watch row under the player": "Pleyer ostiga «Koʻrish» qatorini qoʻshish",
