@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Block features options: hide the home page, Shorts, comments, recommended videos, thumbnails, subscriptions, Explore and the top bar; blur thumbnails; disable end cards and autoplay; black and white mode.
+
 ## [1.0.5] - 2026-11-16
 
 ### Added

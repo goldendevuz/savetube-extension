@@ -13,6 +13,18 @@ export const DEFAULT_SETTINGS = {
   dailyLimit: false,
   dailyLimitMinutes: 120,
   dailyLimitMusic: false,
+  hideHome: false,
+  hideShorts: false,
+  hideComments: false,
+  hideRecommended: false,
+  hideThumbnails: false,
+  blurThumbnails: false,
+  hideSubscriptions: false,
+  hideExplore: false,
+  hideTopBar: false,
+  disableEndCards: false,
+  blackWhite: false,
+  disableAutoplay: false,
   ports: BRIDGE_PORTS,
 };
 

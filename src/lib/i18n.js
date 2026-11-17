@@ -20,6 +20,38 @@ const BASE = {
     "How long videos can play each day":
       "Сколько времени видео могут воспроизводиться каждый день",
     "Count music too": "Считать и музыку",
+    "Block features": "Блокировка функций",
+    "Hide Home page": "Скрыть главную",
+    "Hide the YouTube home feed": "Скрыть ленту главной страницы YouTube",
+    "Hide Shorts": "Скрыть Shorts",
+    "Hide Shorts shelves, tabs and the menu entry":
+      "Скрыть полки, вкладки и пункт меню Shorts",
+    "Hide comments": "Скрыть комментарии",
+    "Hide the comments under videos": "Скрыть комментарии под видео",
+    "Hide recommended videos": "Скрыть рекомендуемые видео",
+    "Hide the videos suggested beside the player":
+      "Скрыть видео, предложенные рядом с плеером",
+    "Hide thumbnails": "Скрыть превью",
+    "Hide the picture of every video": "Скрыть картинку у каждого видео",
+    "Blur thumbnails": "Размыть превью",
+    "Blur the picture of every video": "Размыть картинку у каждого видео",
+    "Hide subscriptions": "Скрыть подписки",
+    "Hide Subscriptions in the side menu": "Скрыть «Подписки» в боковом меню",
+    "Hide Explore": "Скрыть «Навигатор»",
+    "Hide Explore and Trending in the side menu":
+      "Скрыть «Навигатор» и «В тренде» в боковом меню",
+    "Hide top bar": "Скрыть верхнюю панель",
+    "Hide the top bar including the search box":
+      "Скрыть верхнюю панель вместе со строкой поиска",
+    "Disable end cards": "Отключить конечные карточки",
+    "Hide the video suggestions shown in the player at the end of a video":
+      "Скрыть предложения видео, которые появляются в плеере в конце видео",
+    "Black & white mode": "Чёрно-белый режим",
+    "Show YouTube in black and white only":
+      "Показывать YouTube только в чёрно-белом цвете",
+    "Disable autoplay": "Отключить автовоспроизведение",
+    "Do not play the next video automatically at the end of a video":
+      "Не включать следующее видео автоматически в конце видео",
     "YouTube Music counts toward the limit and pauses with it":
       "YouTube Music учитывается в лимите и приостанавливается вместе с ним",
     "Counts the time videos play on YouTube in this browser.":
@@ -97,6 +129,37 @@ const BASE = {
     "How long videos can play each day":
       "Videolar har kuni qancha vaqt ijro etilishi mumkin",
     "Count music too": "Musiqani ham hisoblash",
+    "Block features": "Funksiyalarni bloklash",
+    "Hide Home page": "Bosh sahifani yashirish",
+    "Hide the YouTube home feed": "YouTube bosh sahifa lentasini yashirish",
+    "Hide Shorts": "Shortsni yashirish",
+    "Hide Shorts shelves, tabs and the menu entry":
+      "Shorts qatorlari, yorliqlari va menyu bandini yashirish",
+    "Hide comments": "Izohlarni yashirish",
+    "Hide the comments under videos": "Videolar ostidagi izohlarni yashirish",
+    "Hide recommended videos": "Tavsiya etilgan videolarni yashirish",
+    "Hide the videos suggested beside the player":
+      "Pleer yonidagi tavsiya videolarni yashirish",
+    "Hide thumbnails": "Miniatyuralarni yashirish",
+    "Hide the picture of every video": "Har bir videoning rasmini yashirish",
+    "Blur thumbnails": "Miniatyuralarni xiralashtirish",
+    "Blur the picture of every video": "Har bir videoning rasmini xiralashtirish",
+    "Hide subscriptions": "Obunalarni yashirish",
+    "Hide Subscriptions in the side menu": "Yon menyudagi Obunalarni yashirish",
+    "Hide Explore": "Kashfiyotni yashirish",
+    "Hide Explore and Trending in the side menu":
+      "Yon menyudagi Kashfiyot va Trendni yashirish",
+    "Hide top bar": "Yuqori panelni yashirish",
+    "Hide the top bar including the search box":
+      "Yuqori panelni, qidiruv qatori bilan birga, yashirish",
+    "Disable end cards": "Oxirgi kartochkalarni oʻchirish",
+    "Hide the video suggestions shown in the player at the end of a video":
+      "Video oxirida pleerda chiqadigan tavsiyalarni yashirish",
+    "Black & white mode": "Oq-qora rejim",
+    "Show YouTube in black and white only": "YouTubeʼni faqat oq-qora koʻrsatish",
+    "Disable autoplay": "Avtoijroni oʻchirish",
+    "Do not play the next video automatically at the end of a video":
+      "Video tugagach keyingisini avtomatik ijro etmaslik",
     "YouTube Music counts toward the limit and pauses with it":
       "YouTube Music chegaraga hisoblanadi va u bilan birga toʻxtaydi",
     "Counts the time videos play on YouTube in this browser.":
