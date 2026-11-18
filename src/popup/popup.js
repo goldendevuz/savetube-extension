@@ -8,6 +8,8 @@ import { localEpochDay, rollover, validMinutes } from "../lib/daily-limit.js";
 import { loadTally } from "../lib/daily-tally.js";
 import { currentStreak } from "../lib/limit-streak.js";
 import { loadStreak } from "../lib/streak-store.js";
+import { goalFor, writeGoal } from "../lib/daily-goal.js";
+import { loadGoal, saveGoal } from "../lib/watch-store.js";
 import { formatDuration } from "../lib/format-duration.js";
 
 const statusEl = document.getElementById("status");
@@ -50,6 +52,22 @@ document.getElementById("open-options").addEventListener("click", () => {
     },
   });
   refreshStatus(settings);
+
+  // Today's goal: tap it to tick it off.
+  const goalLine = document.getElementById("goal-line");
+  const showGoal = async () => {
+    const goal = goalFor(await loadGoal(), localEpochDay(Date.now()));
+    goalLine.hidden = !goal;
+    if (!goal) return;
+    goalLine.textContent = `${goal.done ? "✓" : "○"} ${goal.t}`;
+    goalLine.style.cursor = "pointer";
+    goalLine.style.textDecoration = goal.done ? "line-through" : "none";
+    goalLine.onclick = async () => {
+      await saveGoal(writeGoal(goal.d, goal.t, !goal.done, Date.now()));
+      showGoal();
+    };
+  };
+  showGoal();
 
   if (settings.dailyLimit) {
     const tally = rollover(await loadTally(), localEpochDay(Date.now()));

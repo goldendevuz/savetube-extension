@@ -14,6 +14,9 @@ import {
 import { loadTally } from "../lib/daily-tally.js";
 import { MILESTONES, currentStreak, nextMilestone } from "../lib/limit-streak.js";
 import { loadStreak } from "../lib/streak-store.js";
+import { GOAL_MAX_LENGTH, goalFor, writeGoal } from "../lib/daily-goal.js";
+import { summarizeHours } from "../lib/watch-hours.js";
+import { loadGoal, saveGoal, loadHours } from "../lib/watch-store.js";
 import { formatDuration } from "../lib/format-duration.js";
 
 const grantBtn = document.getElementById("grant");
@@ -83,6 +86,53 @@ function limitFrom(settings) {
   };
 }
 
+// Today's goal: one line, ticked off when done.
+const goalText = document.getElementById("goal-text");
+const goalDone = document.getElementById("goal-done");
+const goalClear = document.getElementById("goal-clear");
+
+async function renderGoal() {
+  const goal = goalFor(await loadGoal(), localEpochDay(Date.now()));
+  goalText.placeholder = t("Write today's goal");
+  goalText.value = goal?.t ?? "";
+  goalText.classList.toggle("is-done", !!goal?.done);
+  goalDone.checked = !!goal?.done;
+  goalDone.disabled = !goal;
+  goalClear.hidden = !goal;
+}
+
+async function commitGoal(text, done) {
+  const trimmed = text.trim().slice(0, GOAL_MAX_LENGTH);
+  await saveGoal(writeGoal(localEpochDay(Date.now()), trimmed, trimmed ? done : false, Date.now()));
+  renderGoal();
+}
+
+goalText.addEventListener("change", () => commitGoal(goalText.value, goalDone.checked));
+goalText.addEventListener("keydown", (event) => event.key === "Enter" && goalText.blur());
+goalDone.addEventListener("change", () => commitGoal(goalText.value, goalDone.checked));
+goalClear.addEventListener("click", () => commitGoal("", false));
+
+// When you watch: the 24 hours of the day, the bar of each as tall as the time played then, over the last 28 days.
+async function renderHours() {
+  const { byHour, total, peakHour } = summarizeHours(await loadHours());
+  const peak = Math.max(...byHour, 1);
+  document.getElementById("hours-peak").textContent =
+    peakHour === null
+      ? t("Nothing counted yet. It fills in as you watch.")
+      : t("Most of your watching happens at %s", `${peakHour}:00–${(peakHour + 1) % 24}:00`);
+  document.getElementById("hours-bars").replaceChildren(
+    ...byHour.map((ms, hour) => {
+      const bar = document.createElement("i");
+      bar.title = `${hour}:00 · ${formatDuration(ms)}`;
+      bar.className = hour === peakHour ? "is-peak" : "";
+      bar.style.height = `${Math.max(4, Math.round((ms / peak) * 100))}%`;
+      return bar;
+    }),
+  );
+  document.getElementById("hours-total").textContent =
+    total > 0 ? t("%s in this browser in the last 28 days", formatDuration(total)) : "";
+}
+
 async function renderStreak() {
   const streak = await loadStreak();
   const days = currentStreak(streak, localEpochDay(Date.now()));
@@ -111,6 +161,8 @@ function renderLimit(limit) {
   limitMusic.checked = limit.countMusic;
   limitRows.hidden = !limit.enabled;
   renderStreak();
+  renderGoal();
+  renderHours();
 }
 
 async function applyLimit(next) {

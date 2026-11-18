@@ -13,6 +13,15 @@ export const LANGUAGES = [
 
 const BASE = {
   ru: {
+    "Today's goal": "Цель на сегодня",
+    "One thing you want to get done today": "Одно дело, которое хотите сделать сегодня",
+    "Write today's goal": "Напишите цель на сегодня",
+    "Clear": "Очистить",
+    "When you watch": "Когда вы смотрите",
+    "Nothing counted yet. It fills in as you watch.": "Пока ничего не посчитано. Заполнится по мере просмотра.",
+    "Most of your watching happens at %s": "Больше всего вы смотрите в %s",
+    "%s in this browser in the last 28 days": "%s в этом браузере за последние 28 дней",
+    "Session %s min": "Сеанс %s мин",
     "Streak": "Серия дней",
     "days in a row within your limit": "дн. подряд в рамках лимита",
     "Best: %s": "Рекорд: %s",
@@ -129,6 +138,15 @@ const BASE = {
     "No YouTube video found here": "Здесь не найдено видео YouTube",
   },
   uz: {
+    "Today's goal": "Bugungi maqsad",
+    "One thing you want to get done today": "Bugun bajarmoqchi boʻlgan bitta ish",
+    "Write today's goal": "Bugungi maqsadni yozing",
+    "Clear": "Tozalash",
+    "When you watch": "Qaysi soatda koʻrasiz",
+    "Nothing counted yet. It fills in as you watch.": "Hali hisoblanmagan. Tomosha qilgan sari toʻlib boradi.",
+    "Most of your watching happens at %s": "Koʻproq tomosha %s da boʻladi",
+    "%s in this browser in the last 28 days": "Shu brauzerda oxirgi 28 kunda %s",
+    "Session %s min": "Seans %s daq",
     "Streak": "Ketma-ket kunlar",
     "days in a row within your limit": "kun ketma-ket limit ichida",
     "Best: %s": "Eng yaxshi: %s",

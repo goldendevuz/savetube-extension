@@ -7,6 +7,7 @@ import { createActions } from "./actions.js";
 import { listenForContextMenu } from "./messaging.js";
 import { applyFocus } from "./focus.js";
 import { startDailyLimit } from "./daily-limit.js";
+import { startWatchTracking } from "./watch-tracking.js";
 import { log } from "../lib/log.js";
 import { setLanguage } from "../lib/i18n.js";
 
@@ -36,6 +37,7 @@ async function start() {
 
   listenForContextMenu(actions);
   startDailyLimit(() => settings);
+  startWatchTracking();
   applyFocus(settings);
 
   onNavigate(render);

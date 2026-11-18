@@ -95,6 +95,24 @@
 
       <section class="group">
         <h2>Daily limit</h2>
+        <div class="streak">
+          <span class="streak__title">Today's goal</span>
+          <span class="goal__row">
+            <input id="goal-done" type="checkbox" />
+            <input id="goal-text" class="text goal__text" type="text" maxlength="80" />
+            <button id="goal-clear" type="button" class="btn" hidden>Clear</button>
+          </span>
+          <small class="streak__title">One thing you want to get done today</small>
+        </div>
+        <div class="streak">
+          <span class="streak__title">When you watch</span>
+          <b id="hours-peak" class="hours__peak"></b>
+          <span id="hours-bars" class="hours__bars"></span>
+          <span class="streak__meta"
+            ><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>23:00</span></span
+          >
+          <small id="hours-total" class="streak__title"></small>
+        </div>
         <div class="row">
           <span class="row__label">
             Daily limit
