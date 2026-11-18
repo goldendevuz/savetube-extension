@@ -6,6 +6,8 @@ import { SAVETUBE_RELEASE_URL } from "../lib/const.js";
 import { initI18n, applyTranslations, t } from "../lib/i18n.js";
 import { localEpochDay, rollover, validMinutes } from "../lib/daily-limit.js";
 import { loadTally } from "../lib/daily-tally.js";
+import { currentStreak } from "../lib/limit-streak.js";
+import { loadStreak } from "../lib/streak-store.js";
 import { formatDuration } from "../lib/format-duration.js";
 
 const statusEl = document.getElementById("status");
@@ -58,5 +60,10 @@ document.getElementById("open-options").addEventListener("click", () => {
       formatDuration(validMinutes(settings.dailyLimitMinutes) * 60_000 + tally.extraMs),
     );
     line.hidden = false;
+
+    const streak = currentStreak(await loadStreak(), localEpochDay(Date.now()));
+    const streakLine = document.getElementById("streak-line");
+    streakLine.textContent = t("Streak: %s days", streak);
+    streakLine.hidden = false;
   }
 })();

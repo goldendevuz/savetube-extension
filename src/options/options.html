@@ -118,6 +118,17 @@
             <input id="daily-limit-music" type="checkbox" />
           </div>
           <p class="note">Counts the time videos play on YouTube in this browser.</p>
+          <div id="streak-card" class="streak">
+            <span class="streak__title">Streak</span>
+            <span class="streak__row"
+              ><b id="streak-days">0</b><span id="streak-unit">days in a row within your limit</span></span
+            >
+            <span class="streak__bar"><i id="streak-bar"></i></span>
+            <span class="streak__meta"
+              ><span id="streak-best"></span><span id="streak-next"></span
+            ></span>
+            <span id="streak-badges" class="streak__badges"></span>
+          </div>
         </div>
         <div id="daily-limit-wait" class="row" hidden>
           <span class="row__label">

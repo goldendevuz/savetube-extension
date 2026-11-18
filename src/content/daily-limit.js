@@ -10,6 +10,8 @@ import {
   validMinutes,
 } from "../lib/daily-limit.js";
 import { loadTally, saveTally, onTallyChanged } from "../lib/daily-tally.js";
+import { newMilestone, recordDay } from "../lib/limit-streak.js";
+import { loadStreak, saveStreak } from "../lib/streak-store.js";
 import { t } from "../lib/i18n.js";
 import { toast } from "../ui/toast.js";
 import { isLimitDialogShown, showLimitDialog } from "../ui/limit-dialog.js";
@@ -19,6 +21,8 @@ const TICK_MS = 1000;
 const MAX_COUNTED_GAP_MS = 3000;
 // The count is saved this often while it changes, and at once when something happens.
 const FLUSH_EVERY_MS = 10_000;
+// The streak is checked this often while the limit is on.
+const STREAK_EVERY_MS = 30_000;
 const PREVIEW_SELECTOR =
   "ytd-video-preview, ytd-thumbnail, yt-thumbnail-view-model, ytd-moving-thumbnail-renderer";
 
@@ -52,6 +56,7 @@ export function startDailyLimit(getSettings) {
   let lastFlush = 0;
   let last = Date.now();
   let busy = false;
+  let lastStreak = 0;
 
   loadTally().then((stored) => {
     tally = stored;
@@ -88,6 +93,26 @@ export function startDailyLimit(getSettings) {
     pendingMs = 0;
     dirty = false;
     lastFlush = now;
+  }
+
+  // Keeps the streak up to date: starts it, marks a day broken once the limit ran out (or "Keep watching" was
+  // used), and announces a new badge once.
+  async function keepStreak(now) {
+    if (now - lastStreak < STREAK_EVERY_MS) return;
+    lastStreak = now;
+    const today = localEpochDay(now);
+    const saved = await loadStreak();
+    let next = recordDay(saved, today, false);
+    // the limit ran out on the day of the count, which can be yesterday just after midnight
+    if (tally && (tally.reached || tally.extraMs > 0) && tally.day >= next.s && tally.day <= today) {
+      next = recordDay(next, tally.day, true);
+    }
+    const milestone = newMilestone(next, today);
+    if (milestone !== null) {
+      next = { ...next, a: milestone };
+      toast({ message: t("Streak: %s days in a row within your limit", milestone), duration: 8000 });
+    }
+    if (next !== saved) await saveStreak(next);
   }
 
   async function tick() {
@@ -137,6 +162,7 @@ export function startDailyLimit(getSettings) {
     }
 
     if (urgent || (dirty && now - lastFlush >= FLUSH_EVERY_MS)) await flush(view, now);
+    await keepStreak(now);
   }
 
   setInterval(() => {

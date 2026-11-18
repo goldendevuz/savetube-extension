@@ -12,6 +12,8 @@ import {
   validMinutes,
 } from "../lib/daily-limit.js";
 import { loadTally } from "../lib/daily-tally.js";
+import { MILESTONES, currentStreak, nextMilestone } from "../lib/limit-streak.js";
+import { loadStreak } from "../lib/streak-store.js";
 import { formatDuration } from "../lib/format-duration.js";
 
 const grantBtn = document.getElementById("grant");
@@ -81,11 +83,34 @@ function limitFrom(settings) {
   };
 }
 
+async function renderStreak() {
+  const streak = await loadStreak();
+  const days = currentStreak(streak, localEpochDay(Date.now()));
+  const best = Math.max(streak?.best ?? 0, days);
+  const next = nextMilestone(days);
+  const previous = [...MILESTONES].reverse().find((m) => m <= days) ?? 0;
+  document.getElementById("streak-days").textContent = String(days);
+  document.getElementById("streak-best").textContent = t("Best: %s", best);
+  document.getElementById("streak-next").textContent =
+    next === null ? t("Every badge earned") : t("Next badge at %s days", next);
+  document.getElementById("streak-bar").style.width =
+    `${Math.round((next === null ? 1 : (days - previous) / (next - previous)) * 100)}%`;
+  document.getElementById("streak-badges").replaceChildren(
+    ...MILESTONES.map((m) => {
+      const badge = document.createElement("span");
+      badge.textContent = String(m);
+      badge.className = best >= m ? "badge badge--on" : "badge";
+      return badge;
+    }),
+  );
+}
+
 function renderLimit(limit) {
   limitOn.checked = limit.enabled;
   limitMinutes.value = String(limit.minutes);
   limitMusic.checked = limit.countMusic;
   limitRows.hidden = !limit.enabled;
+  renderStreak();
 }
 
 async function applyLimit(next) {

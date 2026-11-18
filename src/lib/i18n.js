@@ -13,6 +13,13 @@ export const LANGUAGES = [
 
 const BASE = {
   ru: {
+    "Streak": "Серия дней",
+    "days in a row within your limit": "дн. подряд в рамках лимита",
+    "Best: %s": "Рекорд: %s",
+    "Next badge at %s days": "Следующая награда: %s дн.",
+    "Every badge earned": "Все награды получены",
+    "Streak: %s days": "Серия: %s дн.",
+    "Streak: %s days in a row within your limit": "Серия: %s дн. подряд в рамках лимита",
     "Daily limit": "Дневной лимит",
     "Pause videos after a set time each day":
       "Приостанавливать видео после заданного времени каждый день",
@@ -122,6 +129,13 @@ const BASE = {
     "No YouTube video found here": "Здесь не найдено видео YouTube",
   },
   uz: {
+    "Streak": "Ketma-ket kunlar",
+    "days in a row within your limit": "kun ketma-ket limit ichida",
+    "Best: %s": "Eng yaxshi: %s",
+    "Next badge at %s days": "Keyingi nishon: %s kun",
+    "Every badge earned": "Barcha nishonlar olingan",
+    "Streak: %s days": "Ketma-ket: %s kun",
+    "Streak: %s days in a row within your limit": "Ketma-ket: %s kun limit ichida",
     "Daily limit": "Kunlik chegara",
     "Pause videos after a set time each day":
       "Har kuni belgilangan vaqtdan keyin videolarni toʻxtatish",
