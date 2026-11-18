@@ -237,7 +237,7 @@ input[type="checkbox"]:focus-visible {
   height: 100%;
   width: 0;
   border-radius: 6px;
-  background: currentColor;
+  background: var(--accent);
   transition: width 0.5s ease;
 }
 .streak__meta {
@@ -259,8 +259,6 @@ input[type="checkbox"]:focus-visible {
   background: rgba(127, 127, 127, 0.2);
 }
 .badge--on {
-  background: currentColor;
-}
-.badge--on {
-  color: inherit;
+  background: var(--accent);
+  color: #fff;
 }
